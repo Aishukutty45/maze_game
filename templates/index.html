@@ -4,57 +4,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pathfinding Master</title>
+    <title>Grid Masters | Pathfinding & Puzzle Visualization</title>
+
+    <!-- Meta Tags for SEO -->
+    <meta name="description"
+        content="An interactive tool to visualize BFS, DFS, and A* algorithms on mazes and 8-puzzles.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React & ReactDOM -->
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- React & ReactDOM (Development version for easier debugging, change to production for actual deploy if desired) -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- Babel -->
+
+    <!-- Babel for JSX processing in the browser (since no build step) -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Axios -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@400;700;900&family=Fredoka+One&display=swap"
-        rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
+            background-color: #0f172a;
+            /* slate-900 */
+            color: #f8fafc;
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
         }
 
         .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.1);
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 4px;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(71, 85, 105, 0.5);
+            border-radius: 10px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(100, 116, 139, 0.7);
+        }
+
+        @keyframes pulse-soft {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .animate-pulse-soft {
+            animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
     </style>
 </head>
 
-<body class="bg-slate-900 text-slate-100 h-screen overflow-hidden">
-    <div id="root" class="h-full w-full"></div>
+<body>
+    <div id="root" class="h-full"></div>
 
-    <!-- Main App Logic -->
-    <script type="text/babel" src="/static/js/App.js"></script>
+    <!-- Main Application Logic -->
+    <script type="text/babel" src="{{ url_for('static', filename='js/App.js') }}"></script>
 </body>
 
 </html>

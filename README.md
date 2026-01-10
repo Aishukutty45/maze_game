@@ -47,25 +47,45 @@
 
 ---
 
-## 📥 Installation & Usage
+---
 
-1. **Clone the project** and navigate to the directory:
-   ```bash
-   cd fullstack_app
-   ```
+## � Docker Deployment
 
-2. **Install Dependencies** (Make sure Python is installed):
-   ```bash
-   pip install flask
-   ```
+The application is fully containerized. To run it using Docker:
 
-3. **Run the Application**:
-   ```bash
-   python app.py
-   ```
+### 1. Build and Run with Docker Compose (Recommended)
+```bash
+docker-compose up --build
+```
+This will build the image and start the application on `http://localhost:5000`.
 
-4. **Access the App**:
-   Open your browser and navigate to `http://127.0.0.1:5000`
+### 2. Manual Docker Build & Run
+```bash
+# Build the image
+docker build -t puzzle-pathfinder .
+
+# Run the container
+docker run -p 5000:5000 puzzle-pathfinder
+```
+
+The application will be accessible at `http://localhost:5000`.
+
+---
+
+## ☁️ Deploying to Render
+
+Render is a great platform for hosting Dockerized applications. You can deploy this app in minutes:
+
+1.  **Push your code to GitHub/GitLab**.
+2.  **Log in to Render** and click **"New +"** -> **"Web Service"**.
+3.  Connect your repository.
+4.  Render will detect the `Dockerfile`.
+5.  In the settings:
+    *   **Runtime**: Select `Docker`.
+    *   **Region**: Choose the one closest to you.
+6.  Click **"Deploy Web Service"**.
+
+Render will automatically build your image and deploy it. The app will be available at your `*.onrender.com` URL.
 
 ---
 

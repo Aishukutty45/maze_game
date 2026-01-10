@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: puzzle-pathfinder
+    env: docker
+    plan: free
+    region: ohio
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 10000
